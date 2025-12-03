@@ -1,9 +1,9 @@
 // config/db.js
 const mongoose = require('mongoose');
-const path = require('path');
+const path = require('path')
 
 // Load .env from project root
-require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
+require('dotenv').config({ path: path.resolve(__dirname, '../../.env') });
 
 const mongoURI = process.env.MONGODB_URI;
 

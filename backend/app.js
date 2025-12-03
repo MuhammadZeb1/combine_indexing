@@ -6,8 +6,12 @@ require('./config/db'); // Initialize MongoDB connection
 const Campaign = require('./models/campaignModel');
 const path = require('path');
 
-const { serveSitemap } = require('./utlis/sitemapGenerator');
+const { serveSitemap } = require('./utlis/sitemapGenerator.js');
+
+// const { serveSitemap, generateSitemapXml, updateSitemap } = require('../utils/sitemapGenerator.js');
+
 const submissionController = require('./controllers/submissionController');
+require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
 
 // Set BASE_DOMAIN dynamically for Railway deployment
 const HARDCODED_RAILWAY_URL = "https://backend-url-indexing-production-b44f.up.railway.app";
@@ -22,10 +26,12 @@ console.log(`Base domain is: ${BASE_DOMAIN}`);
 const app = express();
 const PORT = 5000;
 
+const _dirname = path.resolve();
+
 // Middleware
 app.use(cors());
 app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(_dirname, 'public')));
 
 // API Routes
 app.post('/api/submit', submissionController.submitCampaign);
@@ -74,7 +80,12 @@ app.get('/robots.txt', async (req, res) => {
     res.status(500).send('Internal server error');
   }
 });
-
+app.use(express.static(path.join(_dirname, "frontend/dist")));
+// This is correct for a catch-all/SPA route
+app.all('/:path', (req, res) => {
+    console.log("khan",path.join(_dirname, 'frontend',"dist", 'index.html'));
+    res.sendFile(path.join(_dirname, 'frontend',"dist", 'index.html'));
+});
 // Start Server
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);

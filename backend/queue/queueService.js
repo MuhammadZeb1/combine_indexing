@@ -1,5 +1,5 @@
 const { Queue } = require("bullmq");
-require("dotenv").config({ path: __dirname + "/../.env" }); // adjust path if needed
+require("dotenv").config({ path: __dirname + "../../.env" }); // adjust path if needed
 console.log("DOTENV VARIABLES:", process.env.GOOGLE_PROJECT_ID, process.env.GOOGLE_CLIENT_EMAIL, process.env.GOOGLE_PRIVATE_KEY ? "OK" : "MISSING");
 
 // NOTE: Redis must be running on this host/port!

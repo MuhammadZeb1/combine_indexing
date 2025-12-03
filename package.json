@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "concurrently --kill-others \"nodemon app.js\" \"nodemon queue/worker.js\"",
+    "build": "npm install && npm install --prefix frontend && npm run build --prefix frontend",
+    "dev": "concurrently --kill-others \"nodemon backend/app.js\" \"nodemon backend/queue/worker.js\"",
     "start": "concurrently --kill-others \"node app.js\" \"node queue/worker.js\""
   },
   "keywords": [],
@@ -15,7 +16,6 @@
   "dependencies": {
     "axios": "^1.13.2",
     "bullmq": "^5.63.2",
-    "concurrently": "^9.2.1",
     "cors": "^2.8.5",
     "dotenv": "^17.2.3",
     "express": "^5.1.0",
@@ -23,5 +23,8 @@
     "mongoose": "^8.20.0",
     "nodemon": "^3.1.11",
     "redis": "^5.9.0"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1"
   }
 }

@@ -3,7 +3,7 @@ const { google } = require('googleapis');
 const axios = require('axios');
 const path = require('path');
 // require('dotenv').config();
-require("dotenv").config({ path: path.resolve(__dirname, "../.env") });
+require("dotenv").config({ path: path.resolve(__dirname, "../../.env") });
 
 // const KEY_FILE_PATH = path.join(__dirname, '../google-service-account.json');
 const GOOGLE_PROJECT_ID = process.env.GOOGLE_PROJECT_ID;
